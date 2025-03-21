@@ -3,31 +3,54 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --color-primary:#B9E5E8;
+  --color-secondary:#6CC7CD;
+  --color-box:#FFFFFF;
+  --color-bg:#DFF2EB;
+  --color-line: #000000;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--color-bg);
+  color: var(--color-line);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.bg-box {
+  background-color: var(--color-box);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-bg {
+  background-color: var(--color-bg);
+}
+
+.bg-line {
+  background-color: var(--color-line);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-box{
+  color: var(--color-box);
+}
+
+.text-bg{
+  color:var(--color-bg);
+}
+
+.text-line{
+  color:var(--color-line);
 }
