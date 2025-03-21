@@ -1,5 +1,5 @@
 export default async function updateDentist(token: string, DentistId: string, dentist: Dentist) {
-   const res = await fetch(`${process.env.BACKEND_URL}/api/v1/dentists/${DentistId}`, {
+   const res = await fetch(`${process.env.BACKEND_URL}/dentists/${DentistId}`, {
       method: "PUT",
       headers: {
          authorization: `Bearer ${token}`,

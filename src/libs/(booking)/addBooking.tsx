@@ -1,5 +1,5 @@
 export default async function addBooking(token: string, booking: Booking) {
-   const res = await fetch(`${process.env.BACKEND_URL}/api/v1/bookings`, {
+   const res = await fetch(`${process.env.BACKEND_URL}/bookings`, {
       method: "POST",
       headers: {
          authorization: `Bearer ${token}`,
