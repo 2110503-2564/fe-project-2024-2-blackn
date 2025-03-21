@@ -1,4 +1,3 @@
-import getMe from "../(auth)/getMe";
 export default async function getLog(token: string, id: string) {
   const response = await fetch(`${process.env.BACKEND_URL}/logs/${id}`, {
     method: "GET",
