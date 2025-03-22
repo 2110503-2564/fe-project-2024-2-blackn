@@ -1,5 +1,5 @@
 export default async function updateBooking(token: string, bookingId: string, booking: Booking) {
-   const res = await fetch(`${process.env.BACKEND_URL}/bookings/${bookingId}`, {
+   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/bookings/${bookingId}`, {
       method: "PUT",
       headers: {
          authorization: `Bearer ${token}`,
