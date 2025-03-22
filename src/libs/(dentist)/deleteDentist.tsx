@@ -1,5 +1,5 @@
 export default async function deleteDentist(token: string, DentistId: string) {
-   const res = await fetch(`${process.env.BACKEND_URL}/dentists/${DentistId}`, {
+   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/dentists/${DentistId}`, {
       method: "DELETE",
       headers: {
          authorization: `Bearer ${token}`
