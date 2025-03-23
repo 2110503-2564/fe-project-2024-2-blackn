@@ -18,7 +18,7 @@ export default function Login() {
     const userCheck = async () => {
       try {
         await getMe(Cookies.get("token") as string);
-        router.push("/");
+        router.back();
       } catch (err) {}
     };
     userCheck();
@@ -28,7 +28,7 @@ export default function Login() {
     try {
       const login = await userLogin(email, password);
       Cookies.set("token", login?.token, { expires: 30 });
-      router.push("/");
+      router.back();
     } catch (err) {
       setError("Login failed. Please try again.");
     }
