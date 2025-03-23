@@ -12,8 +12,8 @@ interface Booking {
    id: string;
    _id: string;
    bookingDate: string;
-   user: string;
-   dentist: string;
+   user: User;
+   dentist: Dentist;
    createdAt: string;
    __v: number;
 }

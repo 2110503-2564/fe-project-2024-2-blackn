@@ -36,9 +36,9 @@ export default function Login() {
     }
   };
   return (
-    <main className="flex justify-center items-center w-full bg-green-100 min-h-screen">
-      <div className="flex flex-col items-center p-16 bg-white rounded-3xl w-[655px] max-md:p-10 max-md:w-[90%] max-sm:p-6 max-sm:w-[95%]">
-        <h1 className="mb-6 text-3xl">Login</h1>
+    <main className="flex justify-center items-center w-full bg-gradient-to-b from-green-100 to-white min-h-screen p-4">
+      <div className="flex flex-col items-center p-16 bg-white rounded-3xl w-[655px] max-md:p-10 max-md:w-[90%] max-sm:p-6 max-sm:w-[95%] shadow-xl transform hover:scale-[1.01] transition-all duration-300">
+        <h1 className="mb-6 text-3xl text-center">Login</h1>
         <Divider />
         <form onSubmit={handleSubmit} className="w-full">
           {error && (
@@ -46,14 +46,16 @@ export default function Login() {
               {error}
             </div>
           )}
-          <InputField
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e: any) => setEmail(e.target.value)}
-            required
-          />
-          <div className="relative w-full">
+          <div className="mb-6">
+            <InputField
+              label="Email"
+              type="email"
+              value={email}
+              onChange={(e: any) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="relative w-full mb-6">
             <InputField
               label="Password"
               type={showPassword ? "text" : "password"}
@@ -76,10 +78,10 @@ export default function Login() {
           >
             Forgot Password?
           </button> */}
-          <div className="flex justify-center w-full hover:translate-y-2 transition-all">
+          <div className="flex justify-center w-full transform hover:scale-105 active:scale-95 transition-all duration-300">
             <Button type="submit">Login</Button>
           </div>
-          <p className="text-xl text-center">
+          <p className="text-2xl text-center mt-8">
             Don't have any account?{" "}
             <button
               type="button"
