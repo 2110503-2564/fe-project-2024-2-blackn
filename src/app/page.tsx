@@ -13,21 +13,21 @@ export default function Home() {
   const [error, setError] = useState("");
   const token = Cookies.get("token");
   const router = useRouter();
-  if (!token) {
-    router.push("/login");
-    return;
-  } else {
-    const userCheck = async () => {
-      try {
-        await getMe(token);
-      } catch (err) {
-        Cookies.remove("token");
-        router.push("/login");
-      }
-    };
-    userCheck();
-  }
   useEffect(() => {
+    if (!token) {
+      router.push("/login");
+      return;
+    } else {
+      const userCheck = async () => {
+        try {
+          await getMe(token);
+        } catch (err) {
+          Cookies.remove("token");
+          router.push("/login");
+        }
+      };
+      userCheck();
+    }
     const fetchDentists = async () => {
       try {
         const data = await getDentists();
