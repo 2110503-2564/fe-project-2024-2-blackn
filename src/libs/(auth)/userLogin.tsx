@@ -15,5 +15,8 @@ export default async function userLogin(
       }),
     }
   );
+  if (!response.ok) {
+    throw new Error("Failed to login");
+  }
   return await response.json();
 }

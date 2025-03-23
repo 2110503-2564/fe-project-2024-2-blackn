@@ -7,19 +7,32 @@ import { Eye, EyeOff } from "lucide-react";
 import userLogin from "@/libs/(auth)/userLogin";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import getMe from "@/libs/(auth)/getMe";
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const router = useRouter();
+  if (Cookies.get("token")) {
+    const userCheck = async () => {
+      try {
+        await getMe(Cookies.get("token") as string);
+        router.push("/");
+      } catch (err) {
+        Cookies.remove("token");
+      }
+    };
+    userCheck();
+  }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const login = await userLogin(email, password);
-    if (!login.success) {
-      alert("Wrong Email or Password");
-    } else {
+    try {
+      const login = await userLogin(email, password);
       Cookies.set("token", login?.token, { expires: 30 });
       router.push("/");
+    } catch (err) {
+      setError("Login failed. Please try again.");
     }
   };
   return (
@@ -28,6 +41,11 @@ export default function Login() {
         <h1 className="mb-6 text-3xl">Login</h1>
         <Divider />
         <form onSubmit={handleSubmit} className="w-full">
+          {error && (
+            <div className="text-red-500 text-base mb-4 text-center">
+              {error}
+            </div>
+          )}
           <InputField
             label="Email"
             type="email"
@@ -58,14 +76,15 @@ export default function Login() {
           >
             Forgot Password?
           </button> */}
-          <div className="flex justify-center w-full">
+          <div className="flex justify-center w-full hover:translate-y-2 transition-all">
             <Button type="submit">Login</Button>
           </div>
           <p className="text-xl text-center">
             Don't have any account?{" "}
             <button
               type="button"
-              className="text-indigo-700 underline cursor-pointer hover:text-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              onClick={() => router.push("/register")}
+              className="text-indigo-700 underline cursor-pointer hover:text-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:-translate-y-1 transition-all"
             >
               Register
             </button>
