@@ -3,31 +3,11 @@ import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { DentistCard } from "@/components/DentistCard";
 import getDentists from "@/libs/(dentist)/getDentists";
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
-import getMe from "@/libs/(auth)/getMe";
-
 export default function Home() {
   const [dentists, setDentists] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const token = Cookies.get("token");
-  const router = useRouter();
   useEffect(() => {
-    if (!token) {
-      router.push("/login");
-      return;
-    } else {
-      const userCheck = async () => {
-        try {
-          await getMe(token);
-        } catch (err) {
-          Cookies.remove("token");
-          router.push("/login");
-        }
-      };
-      userCheck();
-    }
     const fetchDentists = async () => {
       try {
         const data = await getDentists();
