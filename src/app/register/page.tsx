@@ -9,7 +9,7 @@ import userRegister from "@/libs/(auth)/userRegister";
 import Cookies from "js-cookie";
 import getMe from "@/libs/(auth)/getMe";
 
-export default async function Register() {
+export default function Register() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -75,8 +75,8 @@ export default async function Register() {
   };
 
   return (
-    <main className="flex overflow-hidden flex-col justify-center items-center px-20 py-24 text-3xl text-black bg-green-100 min-h-screen max-md:px-5">
-      <div className="flex flex-col items-start px-20 py-14 max-w-full bg-white rounded-3xl w-[655px] max-md:px-5">
+    <main className="flex overflow-hidden flex-col justify-center items-center px-20 py-24 text-3xl text-black bg-gradient-to-b from-green-100 to-white min-h-screen max-md:px-5 p-4">
+      <div className="flex flex-col items-start px-20 py-14 max-w-full bg-white rounded-3xl w-[655px] max-md:px-5 shadow-xl transform hover:scale-[1.01] transition-all duration-300">
         <h1 className="self-center text-3xl text-center mb-10">Register</h1>
         <Divider />
 
@@ -154,7 +154,7 @@ export default async function Register() {
             </button>
           </div>
 
-          <div className="flex justify-center mt-20 max-md:mt-10">
+          <div className="flex justify-center mt-20 max-md:mt-10 transform hover:scale-105 active:scale-95 transition-all duration-300">
             <Button type="submit">Register</Button>
           </div>
 
