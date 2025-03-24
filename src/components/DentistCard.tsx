@@ -18,14 +18,14 @@ export const DentistCard: React.FC<DentistCardProps> = ({
 }) => {
   const router = useRouter();
   const token = Cookies.get("token");
-  const userCheck = async () => {
-    try {
-      await getMe(token as string);
-    } catch (err) {
-      // Cookies.remove("token");
-    }
-  };
-  userCheck();
+  // const userCheck = async () => {
+  //   try {
+  //     await getMe(token as string);
+  //   } catch (err) {
+  //     // Cookies.remove("token");
+  //   }
+  // };
+  // userCheck();
   return (
     <div className="relative p-6 bg-sky-200 rounded-3xl h-[500px] max-md:p-5 max-md:h-auto max-sm:p-4">
       <div className="text-3xl text-center">{name}</div>
