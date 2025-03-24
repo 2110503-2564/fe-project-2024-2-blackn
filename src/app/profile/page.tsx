@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import getMe from "@/libs/(auth)/getMe";
 import getBookings from "@/libs/(booking)/getBookings";
+import { Button } from "@/components/Button";
 export default function Profile() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
@@ -97,10 +98,14 @@ export default function Profile() {
               </div>
               <button
                 onClick={handleChangePassword}
-                className="mt-14 text-center text-indigo-700 underline max-md:mt-10 hover:text-indigo-800 transition-colors"
+                className="mt-14 text-center text-indigo-700 underline max-md:mt-10 hover:text-indigo-800 transition-colors mb-5"
               >
                 Change Password
               </button>
+              <Button onClick={(e: React.MouseEvent) => {
+                e.preventDefault();
+                router.push("/logout");
+              }}>Logout</Button>
             </div>
           </div>
           {error === "Failed to load bookings" ? (

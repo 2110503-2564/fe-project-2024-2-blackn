@@ -1,10 +1,22 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
 
 export const Navbar = () => {
   const router = useRouter();
-  const token = Cookies.get("token");
+  const [token, setToken] = useState(Cookies.get("token"));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newToken = Cookies.get("token");
+      if(newToken) {
+        setToken(newToken);
+        clearInterval(interval);
+      }
+    }, 500);
+    return () => clearInterval(interval);
+  }, [token]);
 
   return (
     <div className="flex justify-between items-center mb-10 max-sm:flex-col max-sm:gap-5 sticky top-0 z-50 backdrop-blur-sm bg-white/70 p-4 rounded-b-2xl shadow-sm">
