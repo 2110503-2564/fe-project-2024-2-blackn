@@ -17,6 +17,7 @@ export default function Home() {
   const [button, setButton] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
+  let value: string[] = [];
 
   useEffect(() => {
     const fetchDentists = async () => {
@@ -48,18 +49,6 @@ export default function Home() {
   useEffect(() => {
     const fetchDentists = async () => {
       try {
-        let value: string[] = [];
-        if(selected.length > 0) {
-          let index = value.push("area_of_expertise=");
-          for(const val of selected) {
-            value[index - 1] += val + ',';
-          }
-          value[index - 1] = value[index - 1].substring(0, value[index - 1].length - 1);
-        }
-        if(years) {
-          value.push("year_of_experience=" + years);
-        }
-        console.log(value);
         const data = await getDentists(value, page);
         setDentists(data.data);
         setTotalPage(data.pagination.total.page);
@@ -70,7 +59,36 @@ export default function Home() {
       }
     }
     fetchDentists();
-  }, [button, page]);
+  }, [page]);
+
+  useEffect(() => {
+    const fetchDentists = async () => {
+      try {
+        let newValue: string[] = [];
+        if(selected.length > 0) {
+          let index = newValue.push("area_of_expertise=");
+          for(const val of selected) {
+            newValue[index - 1] += val + ',';
+          }
+          newValue[index - 1] = newValue[index - 1].substring(0, newValue[index - 1].length - 1);
+        }
+        if(years) {
+          newValue.push("year_of_experience=" + years);
+        }
+        value = newValue;
+        console.log(value);
+        const data = await getDentists(value, page);
+        setDentists(data.data);
+        setTotalPage(data.pagination.total.page);
+        setPage(1);
+      } catch (err) {
+        setError("Failed to load dentists");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchDentists();
+  }, [button]);
 
   useEffect(() => {
     const loadingStates = ["Loading", "Loading.", "Loading..", "Loading..."];
