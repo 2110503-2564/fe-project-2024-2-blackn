@@ -57,7 +57,7 @@ export default function Home() {
       } finally {
         setLoading(false);
       }
-    }
+    };
     fetchDentists();
   }, [page]);
 
@@ -65,14 +65,17 @@ export default function Home() {
     const fetchDentists = async () => {
       try {
         let newValue: string[] = [];
-        if(selected.length > 0) {
+        if (selected.length > 0) {
           let index = newValue.push("area_of_expertise=");
-          for(const val of selected) {
-            newValue[index - 1] += val + ',';
+          for (const val of selected) {
+            newValue[index - 1] += val + ",";
           }
-          newValue[index - 1] = newValue[index - 1].substring(0, newValue[index - 1].length - 1);
+          newValue[index - 1] = newValue[index - 1].substring(
+            0,
+            newValue[index - 1].length - 1
+          );
         }
-        if(years) {
+        if (years) {
           newValue.push("year_of_experience=" + years);
         }
         value = newValue;
@@ -86,7 +89,7 @@ export default function Home() {
       } finally {
         setLoading(false);
       }
-    }
+    };
     fetchDentists();
   }, [button]);
 
