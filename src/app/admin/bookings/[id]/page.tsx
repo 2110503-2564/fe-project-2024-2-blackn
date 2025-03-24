@@ -59,7 +59,7 @@ export default function EditBooking({ params }: { params: { id: string } }) {
 
         const [dentistsData, bookingData] = await Promise.all([
           getDentists(),
-          getBooking(params.id),
+          getBooking(token, params.id),
         ]);
 
         setDentists(dentistsData.data);
