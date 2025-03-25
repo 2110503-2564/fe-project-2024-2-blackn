@@ -22,7 +22,7 @@ export default function BookingsAdmin() {
 
       try {
         const userData = await getMe(token);
-        if (!userData.data.isAdmin) {
+        if (!(userData.data.role === "admin")) {
           router.push("/");
           return;
         }
@@ -101,7 +101,7 @@ export default function BookingsAdmin() {
                             >
                               <div className="w-[33%]">
                                 {new Date(
-                                  booking.createdAt,
+                                  booking.createdAt
                                 ).toLocaleDateString()}
                               </div>
                               <div className="w-[33%]">
@@ -109,7 +109,7 @@ export default function BookingsAdmin() {
                               </div>
                               <div className="w-[33%]">
                                 {new Date(
-                                  booking.bookingDate,
+                                  booking.bookingDate
                                 ).toLocaleDateString()}
                               </div>
                               <div className="w-[18%]">{booking.user.name}</div>

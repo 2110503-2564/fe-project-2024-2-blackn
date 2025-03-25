@@ -52,7 +52,7 @@ export default function EditBooking({ params }: { params: { id: string } }) {
 
       try {
         const userData = await getMe(token);
-        if (!userData.data.isAdmin) {
+        if (!(userData.data.role === "admin")) {
           router.push("/");
           return;
         }

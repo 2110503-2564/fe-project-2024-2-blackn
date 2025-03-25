@@ -10,6 +10,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      console.log("Checking for token");
       const newToken = Cookies.get("token");
       if(newToken) {
         setToken(newToken);
