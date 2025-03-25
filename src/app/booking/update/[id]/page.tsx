@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import getBooking from "@/libs/(booking)/getBooking";
 import getDentists from "@/libs/(dentist)/getDentists";
-import { Button, Divider } from "@mui/material";
+import { Divider } from "@mui/material";
 import updateBooking from "@/libs/(booking)/updateBooking";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import deleteBooking from "@/libs/(booking)/deleteBooking";
+import { Button } from "@/components/Button";
 
 interface BookingUpdateData {
   bookingDate: string;
@@ -74,7 +75,7 @@ export default function UpdateBooking({ params }: { params: { id: string } }) {
          };
 
          await updateBooking(token, params.id, bookingUpdateData as any);
-         router.push(`/bookings/update/${params.id}`);
+         router.push("/profile");
       } catch (err) {
          setError("Failed to update booking. Please try again.");
       }
@@ -143,7 +144,7 @@ export default function UpdateBooking({ params }: { params: { id: string } }) {
                ))}
                </select>
             </div>
-            <div className="flex justify-center w-full transform hover:scale-105 active:scale-95 transition-all duration-300">
+            <div className="mt-6 flex justify-center w-full transform hover:scale-105 active:scale-95 transition-all duration-300">
                <Button
                   type="submit"
                   onClick={handleSubmit}
@@ -151,7 +152,7 @@ export default function UpdateBooking({ params }: { params: { id: string } }) {
                   Change
                </Button>
             </div>
-            <div className="flex justify-center w-full transform hover:scale-105 active:scale-95 transition-all duration-300">
+            <div className="my-2 flex justify-center w-full transform hover:scale-105 active:scale-95 transition-all duration-300">
                <Button
                   type="button"
                   onClick={handleDelete}
