@@ -10,7 +10,7 @@ export default async function getDentists(value?: string[], page?: number) {
   } else if (content != "") {
     content = content.substring(0, content.length - 1);
   }
-  // console.log("content", content);
+  console.log("content", content);
   // console.log(
   //   "URL",
   //   `${process.env.NEXT_PUBLIC_BACKEND_URL}/dentists` +

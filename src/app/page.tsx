@@ -18,7 +18,7 @@ export default function Home() {
   const [button, setButton] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
-  let value: string[] = [];
+  const [value, setValue] = useState<string[]>();
 
   useEffect(() => {
     const fetchDentists = async () => {
@@ -65,6 +65,7 @@ export default function Home() {
   useEffect(() => {
     const fetchDentists = async () => {
       try {
+        console.log("show selected", selected);
         let newValue: string[] = [];
         if (selected.length > 0) {
           let index = newValue.push("area_of_expertise=");
@@ -79,9 +80,10 @@ export default function Home() {
         if (years) {
           newValue.push("year_of_experience=" + years);
         }
-        value = newValue;
-        console.log(value);
-        const data = await getDentists(value, page);
+        setValue(newValue);
+        // console.log("show newValue", newValue);
+        // console.log(value);
+        const data = await getDentists(newValue, page);
         setDentists(data.data);
         setTotalPage(data.pagination.total.page);
         setPage(1);
