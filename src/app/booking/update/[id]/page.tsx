@@ -9,6 +9,7 @@ import { Button, Divider } from "@mui/material";
 import updateBooking from "@/libs/(booking)/updateBooking";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import deleteBooking from "@/libs/(booking)/deleteBooking";
 
 interface BookingUpdateData {
   bookingDate: string;
@@ -79,6 +80,26 @@ export default function UpdateBooking({ params }: { params: { id: string } }) {
       }
    };
 
+   const handleDelete = async () => {
+      let input = confirm("Are you sure you want to delete this booking?");
+      if (!input) return;
+      
+       try {
+         const token = Cookies.get("token");
+         if (!token) {
+            router.push("/login");
+            return;
+         }
+
+         await deleteBooking(token, params.id);
+         router.push("/profile");
+      }
+      catch (err) {
+         setError("Failed to delete booking. Please try again.");
+      }
+      
+   };
+
    return (
       <main className="flex justify-center items-center w-full bg-gradient-to-b from-green-100 to-white min-h-screen p-4">
          <div className="flex flex-col items-center p-16 bg-white rounded-3xl w-[655px] max-md:p-10 max-md:w-[90%] max-sm:p-6 max-sm:w-[95%] shadow-xl transform hover:scale-[1.01] transition-all duration-300">
@@ -128,6 +149,14 @@ export default function UpdateBooking({ params }: { params: { id: string } }) {
                   onClick={handleSubmit}
                >
                   Change
+               </Button>
+            </div>
+            <div className="flex justify-center w-full transform hover:scale-105 active:scale-95 transition-all duration-300">
+               <Button
+                  type="button"
+                  onClick={handleDelete}
+               >
+                  Delete
                </Button>
             </div>
          </form>
