@@ -7,8 +7,8 @@ export default function Logout() {
   const router = useRouter();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const token = Cookies.get("token")
-    if(token) {
+    const token = Cookies.get("token");
+    if (token) {
       Cookies.set("token", token, { expires: 0 });
     }
     router.push("/");
