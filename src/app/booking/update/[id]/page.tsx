@@ -56,8 +56,9 @@ export default function UpdateBooking({ params }: { params: { id: string } }) {
       checkAuth();
    }, [params.id, router]);
 
-   const handleSubmit = async () => {
+   const handleSubmit = async (event:React.FormEvent) => {
       try {
+         event.preventDefault();
          if (!selectedDate || !selectedDentist) {
             setError("Please select both date and dentist");
             return;
@@ -103,10 +104,10 @@ export default function UpdateBooking({ params }: { params: { id: string } }) {
 
    return (
       <main className="flex justify-center items-center w-full bg-gradient-to-b from-green-100 to-white min-h-screen p-4">
-         <div className="flex flex-col items-center p-16 bg-white rounded-3xl w-[655px] max-md:p-10 max-md:w-[90%] max-sm:p-6 max-sm:w-[95%] shadow-xl transform hover:scale-[1.01] transition-all duration-300">
+         <div className="flex flex-col items-center p-16 bg-white rounded-3xl w-[655px] max-md:p-10 max-md:w-[90%] max-sm:p-6 max-sm:w-[95%] shadow-xl transform transition-all duration-300">
          <h1 className="mb-6 text-3xl text-center">Edit Booking</h1>
          <Divider />
-         <form onSubmit={handleSubmit} className="w-full">
+         <div className="w-full">
             {error && (
                <div className="text-red-500 text-base mb-4 text-center">
                {error}
@@ -160,7 +161,7 @@ export default function UpdateBooking({ params }: { params: { id: string } }) {
                   Delete
                </Button>
             </div>
-         </form>
+         </div>
          </div>
       </main>
    );

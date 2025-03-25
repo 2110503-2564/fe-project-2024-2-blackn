@@ -71,7 +71,7 @@ export default function Profile() {
               <div className="ml-8 text-3xl text-center max-md:ml-2.5">
                 {user.name}'s Profile
               </div>
-              <div className={`flex shrink-0 self-stretch /*mt-3.5*/ h-2 bg-sky-200 rounded-3xl`} />
+              <div className={`flex shrink-0 self-stretch mt-[-10%] h-2 bg-sky-200 rounded-3xl`} />
               <div className={`/*mt-[10%]*/ max-md:mt-10`}>Name</div>
               <div className={`flex gap-9 items-start /*mt-6*/ w-auto /*ml-11*/ whitespace-nowrap max-md:ml-2.5`}>
               <input
