@@ -159,6 +159,16 @@ export default function Profile() {
                       >
                         Dentist
                       </TableCell>
+                      {
+                        user.role === "admin" && (
+                          <TableCell
+                            className="self-center font-semibold"
+                            style={{fontSize: "1.5rem", fontWeight: 500}}
+                          >
+                            Patient
+                          </TableCell>
+                        )
+                      }
                       <TableCell
                         className="self-center font-semibold"
                         style={{fontSize: "1.5rem", fontWeight: 500}}
@@ -185,6 +195,15 @@ export default function Profile() {
                         >
                           {booking.dentist.name || "N/A"}
                         </TableCell>
+                        {
+                          user.role === "admin" && (
+                            <TableCell
+                              style={{fontSize: "1.1rem"}}
+                            >
+                              {booking.user.name || "N/A"}
+                            </TableCell>
+                          )
+                        }
                         <TableCell
                           style={{fontSize: "1.1rem"}}
                         >
