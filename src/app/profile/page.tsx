@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import getMe from "@/libs/(auth)/getMe";
 import getBookings from "@/libs/(booking)/getBookings";
 import { Button } from "@/components/Button";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 export default function Profile() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
@@ -58,7 +59,7 @@ export default function Profile() {
   };
 
   const handleUpdateBooking = (bookingId: string) => {
-    router.push(`/booking/${bookingId}`);
+    router.push(`/booking/update/${bookingId}`);
   }
 
   return (
@@ -120,46 +121,71 @@ export default function Profile() {
                 <div className="self-center text-3xl font-extrabold text-black">
                   {user.role === "admin" ? "All Bookings" : `${user.name}'s Bookings`}
                 </div>
-                <div className="mt-7 max-md:max-w-full">
-                  <div className="flex gap-5 max-md:flex-col">
-                    <div className="w-[30%] max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col grow text-xl text-black whitespace-nowrap max-md:mt-10">
-                        <div className="self-center font-semibold">Date</div>
-                        {bookings.map((booking) => (
-                          <div
-                            key={booking._id}
-                            className="mt-12 max-md:mt-10 max-md:mr-2"
-                          >
-                            {new Date(booking.createdAt).toLocaleDateString()}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="ml-5 w-[31%] max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col grow text-xl text-black max-md:mt-10">
-                        <div className="self-center font-semibold">Dentist</div>
-                        {bookings.map((booking) => (
-                          <div key={booking._id} className="mt-12 max-md:mt-10">
-                            {booking.dentist.name || "N/A"}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="ml-5 w-[39%] max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col grow text-xl text-black max-md:mt-10">
-                        <div className="font-semibold">Booking Date</div>
-                        {bookings.map((booking) => (
-                          <div
-                            key={booking._id}
-                            className="self-center mt-11 max-md:mt-10"
-                          >
-                            {new Date(booking.bookingDate).toLocaleDateString()}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Table
+                  className="mt-10 w-full text-3xl max-md:mt-10"
+                >
+                  <TableHead>
+                    <TableRow>
+                      <TableCell
+                        className="self-center text-3xl font-semibold"
+                        style={{fontSize: "1.5rem", fontWeight: 500}}
+                      >
+                        Date
+                      </TableCell>
+                      <TableCell
+                        className="self-center font-semibold"
+                        style={{fontSize: "1.5rem", fontWeight: 500}}
+                      >
+                        Dentist
+                      </TableCell>
+                      <TableCell
+                        className="self-center font-semibold"
+                        style={{fontSize: "1.5rem", fontWeight: 500}}
+                      >
+                        Booking Date
+                      </TableCell>
+                      <TableCell
+                        style={{fontSize: "1.5rem", fontWeight: 500}}
+                      >
+                        Update or Delete
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {bookings.map((booking) => (
+                      <TableRow key={booking._id}>
+                        <TableCell
+                          style={{fontSize: "1.1rem"}}
+                        >
+                          {new Date(booking.createdAt).toLocaleDateString()}
+                        </TableCell>
+                        <TableCell
+                          style={{fontSize: "1.1rem"}}
+                        >
+                          {booking.dentist.name || "N/A"}
+                        </TableCell>
+                        <TableCell
+                          style={{fontSize: "1.1rem"}}
+                        >
+                          {new Date(booking.bookingDate).toLocaleDateString()}
+                        </TableCell>
+                        <TableCell
+                          style={{alignItems: "center"}}
+                        >
+                          <img
+                            src="https://cdn.builder.io/api/v1/image/assets/d880f56b9566450481aec8b7732b7738/58deba2f9928c5564ba610e74f8508d332395dd1?placeholderIfAbsent=true"
+                            alt="edit"
+                            className="object-contain shrink-0 aspect-[1.11] w-[31px] cursor-pointer"
+                            onClick={(e: React.MouseEvent) => {
+                              e.preventDefault();
+                              handleUpdateBooking(booking._id);
+                            }}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </div>
             </div>
           )}
