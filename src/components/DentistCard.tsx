@@ -61,17 +61,6 @@ export const DentistCard: React.FC<DentistCardProps> = ({
       <div className="mt-2 text-lg text-center">
         {experience} Years of Experience
       </div>
-
-      <button
-        onClick={() => {
-          token
-            ? router.push(`/booking?dentist=${name}`)
-            : router.push("/login");
-        }}
-        className="mt-6 text-xl bg-white rounded-xl px-6 py-3 hover:bg-gray-100 hover:scale-105 transition-all duration-300 active:scale-95"
-      >
-        Booking
-      </button>
-    </div>
+  
   );
 };
