@@ -28,7 +28,7 @@ export default function Login() {
     try {
       const login = await userLogin(email, password);
       Cookies.set("token", login?.token, { expires: 30 });
-      router.back();
+      router.push("/");
     } catch (err) {
       setError("Login failed. Please try again.");
     }
