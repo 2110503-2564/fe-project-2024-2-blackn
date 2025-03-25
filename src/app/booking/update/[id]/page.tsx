@@ -34,12 +34,11 @@ export default function UpdateBooking({ params }: { params: { id: string } }) {
 
          try {
             const [dentistsData, bookingData] = await Promise.all([
-               getDentists(),
+               getDentists(["limit=1000"]),
                getBooking(token, params.id),
             ]);
             
-            console.log(dentistsData);
-            console.log(bookingData);
+            console.log("id", bookingData.data.dentist._id);
             setDentists(dentistsData.data);
             setBooking(bookingData.data);
             setSelectedDentist(bookingData.data.dentist._id);
@@ -74,7 +73,7 @@ export default function UpdateBooking({ params }: { params: { id: string } }) {
          };
 
          await updateBooking(token, params.id, bookingUpdateData as any);
-         router.push("/admin/bookings");
+         router.push(`/bookings/update/${params.id}`);
       } catch (err) {
          setError("Failed to update booking. Please try again.");
       }
@@ -115,19 +114,12 @@ export default function UpdateBooking({ params }: { params: { id: string } }) {
                onChange={(e) => setSelectedDentist(e.target.value)}
                className="w-full rounded-3xl bg-zinc-100 h-[62px] px-4 text-xl"
                >
-               <option value={booking? booking.dentist._id: ""}>Select a dentist</option>
-               {/* {dentists.map((dentist) => (
+               <option value="">Select a dentist</option>
+               {dentists.map((dentist) => (
                   <option key={dentist._id} value={dentist._id}>
                      {dentist.name} - {dentist.area_of_expertise}
                   </option>
-               ))} */}
-               {
-                  dentists.map((dentist) => (
-                     <option key={dentist._id} value={dentist._id}>
-                        {dentist.name} - {dentist.area_of_expertise}
-                     </option>
-                  ))
-               }
+               ))}
                </select>
             </div>
             <div className="flex justify-center w-full transform hover:scale-105 active:scale-95 transition-all duration-300">

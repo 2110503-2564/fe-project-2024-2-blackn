@@ -57,11 +57,13 @@ export default function EditBooking({ params }: { params: { id: string } }) {
           return;
         }
 
+        const value: string[] = ["limit=1000"];
+        console.log("value", value);
         const [dentistsData, bookingData] = await Promise.all([
-          getDentists(),
+          getDentists(value),
           getBooking(token, params.id),
         ]);
-
+        
         setDentists(dentistsData.data);
         setBooking(bookingData.data);
         setSelectedDentist(bookingData.data.dentist._id);
