@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function SearchDentist({
   selected,
   setSelected,
+  years,
   setYears,
   AreaData,
   button,
@@ -15,6 +16,7 @@ export default function SearchDentist({
 }: {
   selected: string[];
   setSelected: Function;
+  years: number | null;
   setYears: Function;
   AreaData: string[];
   button: boolean;
@@ -83,6 +85,7 @@ export default function SearchDentist({
               type="number"
               className="text-center w-auto h-auto px-2 py-2 m-2 text-center bg-sky-200 rounded-3xl cursor-pointer hover:bg-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 transition-colors"
               placeholder="Years of Experience"
+              value={years ?? ""}
               onChange={(e) => {
                 console.log(e.target.value);
                 setYears(Number(e.target.value));

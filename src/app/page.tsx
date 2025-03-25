@@ -130,14 +130,14 @@ export default function Home() {
 
         {/* Hero Section */}
         <div className="mb-10 relative w-full h-[500px] max-sm:h-[250px] rounded-3xl overflow-hidden shadow-lg transform hover:scale-[1.02] transition-all duration-300">
-        <Image
-          src="/banner.png"
-          alt="Banner"
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
+          <Image
+            src="/banner.png"
+            alt="Banner"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
         </div>
 
         {/* Divider */}
@@ -151,6 +151,7 @@ export default function Home() {
           selected={selected}
           setSelected={setSelected}
           AreaData={area}
+          years={years}
           setYears={setYears}
           button={button}
           setButton={setButton}
