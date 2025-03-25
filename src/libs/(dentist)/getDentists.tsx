@@ -11,11 +11,11 @@ export default async function getDentists(value?: string[], page?: number) {
     content = content.substring(0, content.length - 1);
   }
   // console.log("content", content);
-  console.log(
-    "URL",
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/dentists` +
-      (content == "" ? "" : `?${content}`)
-  );
+  // console.log(
+  //   "URL",
+  //   `${process.env.NEXT_PUBLIC_BACKEND_URL}/dentists` +
+  //     (content == "" ? "" : `?${content}`)
+  // );
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/dentists` +
       (content == "" ? "" : `?${content}`),
