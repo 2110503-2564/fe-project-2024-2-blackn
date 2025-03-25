@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --color-primary:#B9E5E8;
-  --color-secondary:#6CC7CD;
-  --color-box:#FFFFFF;
-  --color-bg:#DFF2EB;
+  --color-primary: #b9e5e8;
+  --color-secondary: #6cc7cd;
+  --color-box: #ffffff;
+  --color-bg: #dff2eb;
   --color-line: #000000;
 }
 
@@ -43,14 +43,14 @@ body {
   color: var(--color-secondary);
 }
 
-.text-box{
+.text-box {
   color: var(--color-box);
 }
 
-.text-bg{
-  color:var(--color-bg);
+.text-bg {
+  color: var(--color-bg);
 }
 
-.text-line{
-  color:var(--color-line);
+.text-line {
+  color: var(--color-line);
 }
