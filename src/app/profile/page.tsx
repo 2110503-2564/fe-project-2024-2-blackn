@@ -57,6 +57,10 @@ export default function Profile() {
     console.log("Change password clicked");
   };
 
+  const handleUpdateBooking = (bookingId: string) => {
+    router.push(`/booking/${bookingId}`);
+  }
+
   return (
     <div className="flex overflow-hidden flex-col justify-center px-12 py-7 bg-gradient-to-b from-green-100 to-white min-h-screen max-md:px-5">
       <div className="px-12 py-7 bg-white rounded-3xl max-md:px-5 max-md:max-w-full shadow-xl transform hover:scale-[1.01] transition-all duration-300">
@@ -114,7 +118,7 @@ export default function Profile() {
             <div className="ml-5 w-[61%] max-md:ml-0 max-md:w-full">
               <div className="flex flex-col px-12 pt-10 mx-auto w-full bg-gradient-to-r from-green-100 to-sky-100 rounded-3xl pb-[464px] max-md:px-5 max-md:pb-24 max-md:mt-10 max-md:max-w-full shadow-lg transform hover:scale-[1.01] transition-all duration-300">
                 <div className="self-center text-3xl font-extrabold text-black">
-                  {user.name}'s History Booking
+                  {user.role === "admin" ? "All Bookings" : `${user.name}'s Bookings`}
                 </div>
                 <div className="mt-7 max-md:max-w-full">
                   <div className="flex gap-5 max-md:flex-col">

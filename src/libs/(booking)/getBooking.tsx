@@ -1,6 +1,10 @@
-export default async function getBooking(id: string) {
+export default async function getBooking(token: string, id: string) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/bookings/${id}`
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/bookings/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      }
+    }
   );
 
   if (!res.ok) {
