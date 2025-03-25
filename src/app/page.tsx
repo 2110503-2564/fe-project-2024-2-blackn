@@ -151,6 +151,7 @@ export default function Home() {
           selected={selected}
           setSelected={setSelected}
           AreaData={area}
+          years={years}
           setYears={setYears}
           button={button}
           setButton={setButton}
