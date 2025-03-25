@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { DentistCard } from "@/components/DentistCard";
 import getDentists from "@/libs/(dentist)/getDentists";
+import Image from "next/image";
 import SearchDentist from "@/components/SearchDentist";
 import getArea from "@/libs/(dentist)/getArea";
 
@@ -57,7 +58,7 @@ export default function Home() {
       } finally {
         setLoading(false);
       }
-    }
+    };
     fetchDentists();
   }, [page]);
 
@@ -65,14 +66,17 @@ export default function Home() {
     const fetchDentists = async () => {
       try {
         let newValue: string[] = [];
-        if(selected.length > 0) {
+        if (selected.length > 0) {
           let index = newValue.push("area_of_expertise=");
-          for(const val of selected) {
-            newValue[index - 1] += val + ',';
+          for (const val of selected) {
+            newValue[index - 1] += val + ",";
           }
-          newValue[index - 1] = newValue[index - 1].substring(0, newValue[index - 1].length - 1);
+          newValue[index - 1] = newValue[index - 1].substring(
+            0,
+            newValue[index - 1].length - 1
+          );
         }
-        if(years) {
+        if (years) {
           newValue.push("year_of_experience=" + years);
         }
         value = newValue;
@@ -86,7 +90,7 @@ export default function Home() {
       } finally {
         setLoading(false);
       }
-    }
+    };
     fetchDentists();
   }, [button]);
 
@@ -123,12 +127,18 @@ export default function Home() {
         <Navbar />
 
         {/* Hero Section */}
-        <div className="mb-10 bg-gradient-to-r from-green-100 to-sky-100 rounded-3xl h-[380px] max-sm:h-[250px] flex items-center justify-center transform hover:scale-[1.02] transition-all duration-300 shadow-lg">
-          <h1 className="text-4xl max-sm:text-3xl font-bold text-gray-800 text-center px-4 animate-fadeIn">
-            Find Your Perfect Dentist
-          </h1>
+        <div className="mb-10 relative w-full h-[500px] max-sm:h-[250px] rounded-3xl overflow-hidden shadow-lg transform hover:scale-[1.02] transition-all duration-300">
+        <Image
+          src="/banner.png"
+          alt="Banner"
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
+        />
         </div>
 
+        {/* Divider */}
         <div className="mx-0 my-10 h-2 bg-gradient-to-r from-green-200 to-sky-200 rounded-3xl transform hover:scale-x-105 transition-all duration-300" />
 
         <div className="mb-10 text-3xl text-center font-semibold bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-sky-600">
